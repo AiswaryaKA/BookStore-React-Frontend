@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { faBackward } from '@fortawesome/free-solid-svg-icons/faBackward'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../../components/Footer'
 
 import { faCamera } from '@fortawesome/free-solid-svg-icons/faCamera'
@@ -139,19 +139,25 @@ function Viewbook() {
       {/* book modal eye */}
 
       {bookphoto && (
-        <div className="fixed top-30 left-0 w-full  flex items-center justify-center ">
-          <div className="bg-white w-10 rounded shadow-lg relative">
-            <div className="flex justify-between px-4 py-5 bg-gray-900 text-white rounded">
-              <h1>Book Photo</h1>
-              <button onClick={() => setBookPhoto(false)} className="bg-black text-white font-extrabold px-3 rounded">X</button>
-            </div>
-            <div className="py-5 px-8">
-              <div className="text-blue-500 flex gap-4 items-start justify-center mb-4">
-                <FontAwesomeIcon icon={faCamera} />
-                <p>Camera click of the book in the hand of seller</p>
-              </div>
-              <div className='w-65 mx-auto p-8'>
-                {
+       <div onClick={() => setBookPhoto(false)} className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex md:min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+                <div className="bg-gray-900 p-3 text-white flex justify-between">
+                  <h3>Book Photos</h3>
+                  <FontAwesomeIcon icon={faXmark} onClick={() => setBookPhoto(false)} />
+                </div>
+
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <p className="text-blue-500">
+                    <FontAwesomeIcon icon={faCamera} className="me-3" />
+                    Camera click of the book in the hand of seller
+                  </p>
+
+                  <div className="md:flex my-4">
+                     {
                   viewBookDetails?.uploadedImg.map((item) => (
                     <img
                       src={`${serverUrl}/upload/${item}`}
@@ -160,6 +166,8 @@ function Viewbook() {
                     />
                   ))
                 }
+                  </div>
+                </div>
               </div>
             </div>
           </div>
