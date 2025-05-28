@@ -7,7 +7,6 @@ import { faCircleCheck, faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 import { toast, ToastContainer } from 'react-toastify'
 import { deleteAUserBookApi, getAllUserBookApi, getAllUserBroughtBookApi, uploadBookApi } from '../../services/allApi'
 import { serverUrl } from '../../services/serverUrl'
-import { useNavigate } from 'react-router-dom'
 import { userProfileUpdateStatusContext } from '../../context/Contextshare'
 
 
@@ -348,11 +347,10 @@ function Profile() {
                         <img src="https://i.pinimg.com/736x/de/c8/19/dec81905ee90ac935ec2f91e9ece5ad3.jpg" alt="" style={{ width: '70px', height: '70px' }} />}
                     </div>
                   </div>
-                  <div className='px-4'>
-                    <img src="https://i0.wp.com/interestingliterature.com/wp-content/uploads/2017/01/secret-library-book-cover-2.jpg?ssl=1" alt="" className='w-full' style={{ height: '300px' }} />
-                    <div>
+                   <div className='px-4'>
+                    <img src={item?.imageurl} alt="" className='w-full' style={{ height: '300px' }} />
+                    <div className='flex justify-end mt-4'>
                       <button onClick={()=>deleteBook(item?._id)} type='button' className='mt-5 p-2 rounded bg-red-600 text-white hover:bg-gray-200 hover:text-red-600 hover:border hover:border-red-600'>Delete</button>
-
                     </div>
                   </div>
                 </div>
